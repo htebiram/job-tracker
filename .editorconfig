@@ -1,0 +1,136 @@
+root = true
+
+# =====================================================================
+# Global C# scope
+# =====================================================================
+[*.cs]
+
+# --- Baseline formatting ---
+indent_style = space
+indent_size = 4
+charset = utf-8
+insert_final_newline = true
+
+# --- C# language/version ---
+dotnet_language_version = latest
+
+# =====================================================================
+# Naming rules
+# =====================================================================
+
+# Private fields: underscore + camelCase (e.g., _count)
+dotnet_naming_rule.private_fields_underscore.style = underscore_prefix
+dotnet_naming_rule.private_fields_underscore.symbols = private_fields
+dotnet_naming_rule.private_fields_underscore.severity = warning
+dotnet_naming_symbols.private_fields.applicable_kinds = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
+dotnet_naming_style.underscore_prefix.required_prefix = _
+dotnet_naming_style.underscore_prefix.capitalization = camel_case
+
+# Interfaces: start with I (e.g., IRepository)
+dotnet_naming_rule.interfaces_start_with_i.symbols = interfaces
+dotnet_naming_rule.interfaces_start_with_i.style = prefix_i
+dotnet_naming_rule.interfaces_start_with_i.severity = warning
+dotnet_naming_symbols.interfaces.applicable_kinds = interface
+dotnet_naming_style.prefix_i.required_prefix = I
+dotnet_naming_style.prefix_i.capitalization = pascal_case
+
+# Constants: ALL_UPPER (e.g., DEFAULT_TIMEOUT)
+dotnet_naming_rule.constants_are_uppercase.symbols = constants
+dotnet_naming_rule.constants_are_uppercase.style = all_upper
+dotnet_naming_rule.constants_are_uppercase.severity = warning
+dotnet_naming_symbols.constants.applicable_kinds = field
+dotnet_naming_symbols.constants.required_modifiers = const
+dotnet_naming_style.all_upper.capitalization = all_upper
+
+# Async methods end with Async (e.g., SaveAsync)
+dotnet_naming_rule.async_methods_end_with_async.symbols = async_methods
+dotnet_naming_rule.async_methods_end_with_async.style = end_with_async
+dotnet_naming_rule.async_methods_end_with_async.severity = warning
+dotnet_naming_symbols.async_methods.applicable_kinds = method
+dotnet_naming_symbols.async_methods.required_modifiers = async
+dotnet_naming_style.end_with_async.required_suffix = Async
+dotnet_naming_style.end_with_async.capitalization = pascal_case
+
+# =====================================================================
+# Style preferences (use these to control intent & severity)
+# =====================================================================
+
+# Qualification & accessibility
+dotnet_style_require_accessibility_modifiers = always:warning
+dotnet_style_qualification_for_field = false:suggestion
+dotnet_style_qualification_for_property = false:suggestion
+dotnet_style_qualification_for_method = false:suggestion
+dotnet_style_qualification_for_event = false:suggestion
+
+# var usage
+dotnet_style_require_var_for_built_in_types = true:suggestion
+dotnet_style_require_var_for_simple_types = false:suggestion
+dotnet_style_require_var_for_complex_types = true:suggestion
+
+# Expression-bodied members
+csharp_style_expression_bodied_methods = when_on_single_line:suggestion
+csharp_style_expression_bodied_properties = when_on_single_line:suggestion
+csharp_style_expression_bodied_ctors = when_on_single_line:suggestion
+csharp_style_expression_bodied_indexers = when_on_single_line:suggestion
+csharp_style_expression_bodied_operators = when_on_single_line:suggestion
+
+# File-scoped namespaces
+csharp_style_namespace_declarations = file_scoped:warning
+
+# Using declaration 
+csharp_prefer_simple_using_statement = true:warning
+
+# Pattern matching / null-handling
+dotnet_style_prefer_is_null_check_over_reference_equality_method = true:warning
+dotnet_style_prefer_conditional_expression_over_assignment = true:suggestion
+dotnet_style_prefer_conditional_expression_over_return = true:suggestion
+dotnet_style_prefer_null_propagation = true:warning
+dotnet_style_prefer_coalesce_expression = true:suggestion
+
+# Object/collection/tuples
+dotnet_style_prefer_object_initializer = true:suggestion
+dotnet_style_prefer_collection_initializer = true:suggestion
+dotnet_style_prefer_simplified_boolean_expressions = true:suggestion
+dotnet_style_prefer_simplified_interpolation = true:suggestion
+dotnet_style_prefer_switch_expression = true:suggestion
+dotnet_style_prefer_compound_assignment = true:suggestion
+dotnet_style_prefer_tuple_swap = true:suggestion
+
+# Trailing commas
+dotnet_style_prefer_trailing_commas = true:suggestion
+
+# Readonly fields where possible
+dotnet_style_readonly_field = true:warning
+
+# Prefer primary constructors where applicable 
+csharp_style_prefer_primary_constructors = true:suggestion
+
+# =====================================================================
+# Analyzer severities
+# =====================================================================
+
+dotnet_diagnostic.IDE0005.severity = warning     # remove unused usings
+dotnet_diagnostic.IDE0060.severity = warning     # remove unused parameter
+dotnet_diagnostic.IDE0051.severity = warning     # remove unused private members
+
+# Correctness / quality
+dotnet_diagnostic.CA2000.severity = error        # dispose objects
+dotnet_diagnostic.CA2016.severity = error        # forward cancellation token
+dotnet_diagnostic.CA1062.severity = warning      # validate public method args for null
+dotnet_diagnostic.CA2201.severity = warning      # do not raise reserved exceptions
+dotnet_diagnostic.CA2208.severity = warning      # correct argument names in ArgumentException
+dotnet_diagnostic.CA1822.severity = suggestion   # mark methods static (no instance data)
+dotnet_diagnostic.CA1827.severity = suggestion   # prefer Any() vs Count() for emptiness
+
+# Maintainability metrics
+dotnet_diagnostic.CA1501.severity = warning      # excessive inheritance
+dotnet_diagnostic.CA1502.severity = warning      # cyclomatic complexity
+dotnet_diagnostic.CA1505.severity = warning      # unmaintainable code
+dotnet_diagnostic.CA1506.severity = warning      # class coupling
+
+# =====================================================================
+# Test code overrides 
+# =====================================================================
+[**/*Tests*/**.cs]
+dotnet_diagnostic.CS1591.severity = none         # don't require XML docs in tests

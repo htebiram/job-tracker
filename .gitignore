@@ -20,8 +20,12 @@ x86/
 bld/
 [Bb]in/
 [Oo]bj/
+
+# Logs
 [Ll]og/
 [Ll]ogs/
+*.log
+*.binlog
 
 # .NET Core
 project.lock.json
@@ -39,19 +43,29 @@ ScaffoldingReadMe.txt
 # dotenv environment variables file
 .env
 
-# Others
-~$*
-*~
+# Test & Coverage
 CodeCoverage/
+coverage/
+coverage-report/
+TestResults/
 
-# MSBuild Binary and Structured Log
-*.binlog
-
-# MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
-
-# NUnit
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# IDE
+.vs/
+.vscode/
+.idea/
+
+# Visual Studio user files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Others
+~$*
+*~

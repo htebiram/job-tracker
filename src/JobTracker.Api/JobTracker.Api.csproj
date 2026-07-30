@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -8,6 +8,18 @@
 
 <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="Serilog.Settings.Configuration" />
+    <PackageReference Include="Serilog.Sinks.Console" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" />
+</ItemGroup>
+
+<ItemGroup>
+  <ProjectReference Include="..\JobTracker.Application\JobTracker.Application.csproj" />
+  <ProjectReference Include="..\JobTracker.Infrastructure\JobTracker.Infrastructure.csproj" />
 </ItemGroup>
 
 </Project>

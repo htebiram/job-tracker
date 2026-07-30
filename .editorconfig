@@ -134,3 +134,6 @@ dotnet_diagnostic.CA1506.severity = warning      # class coupling
 # =====================================================================
 [**/*Tests*/**.cs]
 dotnet_diagnostic.CS1591.severity = none         # don't require XML docs in tests
+
+[**/Migrations/*.cs]
+generated_code = true

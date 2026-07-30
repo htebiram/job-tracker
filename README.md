@@ -1,52 +1,32 @@
-# \# JobTracker API
+# JobTracker API
 
-# 
+ASP.NET Core Web API demonstrating:
 
-# ASP.NET Core Web API demonstrating:
+- Clean Architecture
+- RESTful API design
+- Entity Framework Core
+- SQL Server
+- Structured logging
+- Validation
+- Unit testing
+- Integration testing
 
-# 
+## Architecture
 
-# \- Clean Architecture
+- JobTracker.Api
+- JobTracker.Application
+- JobTracker.Domain
+- JobTracker.Infrastructure
 
-# \- RESTful API Design
+## Getting started
 
-# \- Entity Framework Core
+1. Clone the repository.
+2. Update the connection string.
+3. Apply migrations.
+4. Configure Auth0.
+5. Run the API.
 
-# \- SQL Server
+## Authentication
 
-# \- Structured Logging
-
-# \- Validation
-
-# \- Unit Testing
-
-# \- Integration Testing
-
-
-
-# \## Architecture
-
-# 
-
-# \- JobTracker.Api
-
-# \- JobTracker.Application
-
-# \- JobTracker.Domain
-
-# \- JobTracker.Infrastructure
-
-# 
-
-# \## Getting Started
-
-# 
-
-# 1\. Clone the repository.
-
-# 2\. Update the connection string.
-
-# 3\. Apply migrations.
-
-# 4\. Run the API.
-
+Auth0 JWT authentication and Swagger OAuth setup are documented in
+[docs/Auth0-Setup.md](docs/Auth0-Setup.md).

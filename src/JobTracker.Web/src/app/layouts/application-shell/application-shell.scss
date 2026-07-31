@@ -1,0 +1,80 @@
+:host {
+  display: block;
+  min-block-size: 100%;
+}
+
+.shell {
+  display: grid;
+  min-block-size: 100vh;
+  grid-template:
+    'header header' var(--shell-header-height)
+    'navigation main' minmax(0, 1fr)
+    'navigation footer' auto /
+    var(--shell-navigation-width) minmax(0, 1fr);
+}
+
+app-top-navigation {
+  grid-area: header;
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--z-header);
+}
+
+app-side-navigation {
+  grid-area: navigation;
+}
+
+.main-content {
+  grid-area: main;
+  min-inline-size: 0;
+  padding: var(--space-8);
+}
+
+app-footer {
+  grid-area: footer;
+}
+
+.navigation-backdrop {
+  display: none;
+}
+
+@media (max-width: 52rem) {
+  .shell {
+    grid-template:
+      'header' var(--shell-header-height)
+      'main' minmax(0, 1fr)
+      'footer' auto /
+      minmax(0, 1fr);
+  }
+
+  app-side-navigation {
+    position: fixed;
+    z-index: var(--z-drawer);
+    inset: var(--shell-header-height) auto 0 0;
+    inline-size: min(var(--shell-navigation-width), calc(100vw - var(--space-12)));
+    visibility: hidden;
+    translate: -100% 0;
+    transition:
+      translate var(--duration-normal) var(--ease-standard),
+      visibility 0s var(--duration-normal);
+  }
+
+  app-side-navigation.is-open {
+    visibility: visible;
+    translate: 0;
+    transition-delay: 0s;
+  }
+
+  .navigation-backdrop {
+    display: block;
+    position: fixed;
+    z-index: var(--z-backdrop);
+    inset: var(--shell-header-height) 0 0;
+    border: 0;
+    background: rgb(15 23 42 / 48%);
+  }
+
+  .main-content {
+    padding: var(--space-6) var(--space-4);
+  }
+}

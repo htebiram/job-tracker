@@ -1,0 +1,29 @@
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<div class="shell">
+  <app-top-navigation
+    [isNavigationOpen]="isNavigationOpen()"
+    (navigationToggle)="toggleNavigation()"
+  />
+
+  <app-side-navigation
+    [class.is-open]="isNavigationOpen()"
+    [isOpen]="isNavigationOpen()"
+    (navigationSelected)="closeNavigation()"
+  />
+
+  @if (isNavigationOpen()) {
+    <button
+      class="navigation-backdrop"
+      type="button"
+      aria-label="Close navigation"
+      (click)="closeNavigation()"
+    ></button>
+  }
+
+  <main id="main-content" class="main-content" tabindex="-1">
+    <router-outlet />
+  </main>
+
+  <app-footer />
+</div>

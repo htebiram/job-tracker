@@ -1,0 +1,33 @@
+<a class="skip-link" href="#public-content">Skip to main content</a>
+
+<div class="public-layout">
+  <header class="public-header">
+    <a class="brand" routerLink="/" aria-label="JobTracker home">
+      <span class="brand-mark" aria-hidden="true">JT</span>
+      <span>JobTracker</span>
+    </a>
+
+    <nav aria-label="Public navigation">
+      <button
+        class="theme-button"
+        type="button"
+        [attr.aria-label]="theme() === 'light' ? 'Use dark theme' : 'Use light theme'"
+        (click)="toggleTheme()"
+      >
+        <span aria-hidden="true">{{ theme() === 'light' ? '◐' : '☀' }}</span>
+      </button>
+      <a class="login-link" routerLink="/workspace">Log in</a>
+      <a class="primary-action compact" routerLink="/workspace">Get started</a>
+    </nav>
+  </header>
+
+  <main id="public-content" tabindex="-1">
+    <router-outlet />
+  </main>
+
+  <footer>
+    <a routerLink="/">JobTracker</a>
+    <p>One clear workspace for every opportunity.</p>
+    <p>© {{ currentYear }} JobTracker</p>
+  </footer>
+</div>

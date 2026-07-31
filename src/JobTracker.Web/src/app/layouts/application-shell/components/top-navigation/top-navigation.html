@@ -1,0 +1,34 @@
+<header class="top-navigation">
+  <button
+    class="menu-button"
+    type="button"
+    aria-label="Toggle main navigation"
+    aria-controls="primary-navigation"
+    [attr.aria-expanded]="isNavigationOpen()"
+    (click)="navigationToggle.emit()"
+  >
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </button>
+
+  <a class="brand" routerLink="/workspace" aria-label="JobTracker workspace">
+    <span class="brand-mark" aria-hidden="true">JT</span>
+    <span>JobTracker</span>
+  </a>
+
+  <div class="actions">
+    <span class="environment-label">Personal workspace</span>
+    <button
+      class="theme-button"
+      type="button"
+      [attr.aria-label]="theme() === 'light' ? 'Use dark theme' : 'Use light theme'"
+      (click)="toggleTheme()"
+    >
+      <span aria-hidden="true">{{ theme() === 'light' ? '◐' : '☀' }}</span>
+    </button>
+    <button class="profile-button" type="button" aria-label="Open profile menu" disabled>
+      <span aria-hidden="true">JD</span>
+    </button>
+  </div>
+</header>

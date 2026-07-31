@@ -1,0 +1,125 @@
+<section class="tasks" aria-labelledby="tasks-title">
+  <header>
+    <div>
+      <p class="eyebrow">Focus list</p>
+      <h1 id="tasks-title">Tasks</h1>
+      <p>Keep follow-ups and deadlines moving.</p>
+    </div>
+    <button class="primary" type="button" (click)="openCreate()">Add task</button>
+  </header>
+
+  <div class="toolbar">
+    <div class="tabs" aria-label="Task views">
+      <button type="button" [class.active]="view() === 'Active'" (click)="view.set('Active')">
+        Active <span>{{ activeCount() }}</span>
+      </button>
+      <button type="button" [class.active]="view() === 'Completed'" (click)="view.set('Completed')">
+        Completed <span>{{ completedCount() }}</span>
+      </button>
+    </div>
+    <label
+      >Priority<select [value]="priority()" (change)="updatePriority($event)">
+        <option>All</option>
+        @for (item of priorities; track item) {
+          <option>{{ item }}</option>
+        }
+      </select></label
+    >
+    <label
+      >Category<select [value]="category()" (change)="updateCategory($event)">
+        <option>All</option>
+        @for (item of categories; track item) {
+          <option>{{ item }}</option>
+        }
+      </select></label
+    >
+  </div>
+
+  @if (visible().length) {
+    <div class="task-list">
+      @for (task of visible(); track task.id) {
+        <article [class.completed]="task.completed">
+          <button
+            class="check"
+            type="button"
+            [attr.aria-label]="task.completed ? 'Mark task active' : 'Complete task'"
+            [attr.aria-pressed]="task.completed"
+            (click)="toggle(task)"
+          >
+            {{ task.completed ? '✓' : '' }}
+          </button>
+          <div class="task-content">
+            <div class="task-heading">
+              <h2>{{ task.title }}</h2>
+              <span class="priority {{ task.priority.toLowerCase() }}">{{ task.priority }}</span>
+            </div>
+            <p>{{ task.description }}</p>
+            <div class="meta">
+              <span>{{ task.category }}</span
+              ><span>Due {{ task.dueDate }}</span>
+            </div>
+          </div>
+          <div class="actions">
+            <button type="button" (click)="openEdit(task)">Edit</button
+            ><button type="button" (click)="archive(task)">Archive</button>
+          </div>
+        </article>
+      }
+    </div>
+  } @else {
+    <div class="empty">
+      <span aria-hidden="true">✓</span>
+      <h2>No tasks here</h2>
+      <p>Your current filters have no matching tasks.</p>
+    </div>
+  }
+</section>
+
+@if (isFormOpen()) {
+  <div class="modal-backdrop">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="task-form-title">
+      <div class="modal-heading">
+        <h2 id="task-form-title">{{ editing() ? 'Edit task' : 'Add task' }}</h2>
+        <button type="button" aria-label="Close task form" (click)="isFormOpen.set(false)">
+          ×
+        </button>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="save()">
+        <label
+          >Title<input formControlName="title" />
+          @if (form.controls.title.touched && form.controls.title.invalid) {
+            <span class="error">Title is required.</span>
+          }
+        </label>
+        <label>Description<textarea rows="3" formControlName="description"></textarea></label>
+        <div class="form-row">
+          <label
+            >Priority<select formControlName="priority">
+              @for (item of priorities; track item) {
+                <option>{{ item }}</option>
+              }
+            </select></label
+          ><label
+            >Category<select formControlName="category">
+              @for (item of categories; track item) {
+                <option>{{ item }}</option>
+              }
+            </select></label
+          >
+        </div>
+        <label
+          >Due date<input type="date" formControlName="dueDate" />
+          @if (form.controls.dueDate.touched && form.controls.dueDate.invalid) {
+            <span class="error">Due date is required.</span>
+          }
+        </label>
+        <div class="modal-actions">
+          <button type="button" (click)="isFormOpen.set(false)">Cancel</button
+          ><button class="primary" type="submit">
+            {{ editing() ? 'Save changes' : 'Add task' }}
+          </button>
+        </div>
+      </form>
+    </section>
+  </div>
+}

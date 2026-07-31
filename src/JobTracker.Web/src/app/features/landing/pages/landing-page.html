@@ -1,0 +1,58 @@
+<section class="landing">
+  <div class="hero-copy">
+    <p class="eyebrow"><span aria-hidden="true"></span>Your job search, organized</p>
+    <h1>Move every opportunity forward.</h1>
+    <p class="value-proposition">
+      JobTracker turns a scattered job search into one calm, focused workflow—from first application
+      to final offer.
+    </p>
+
+    <div class="hero-actions">
+      <a class="primary-action" routerLink="/workspace">Get started free</a>
+      <a class="secondary-action" routerLink="/workspace">Log in</a>
+    </div>
+
+    <p class="supporting-copy">No setup required · Local mock workspace · Built for focus</p>
+  </div>
+
+  <div class="product-preview" aria-label="JobTracker dashboard preview">
+    <div class="preview-window">
+      <div class="preview-toolbar" aria-hidden="true">
+        <span></span><span></span><span></span>
+        <p>Dashboard</p>
+      </div>
+      <div class="preview-content" aria-hidden="true">
+        <div class="preview-navigation">
+          <span class="preview-logo">JT</span>
+          @for (item of [1, 2, 3, 4]; track item) {
+            <span class="preview-line"></span>
+          }
+        </div>
+        <div class="preview-dashboard">
+          <div class="preview-heading"></div>
+          <div class="preview-stats">
+            @for (item of [1, 2, 3, 4]; track item) {
+              <span></span>
+            }
+          </div>
+          <div class="preview-panels">
+            <span class="preview-chart"> <i></i><i></i><i></i><i></i><i></i> </span>
+            <span class="preview-list"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feature-highlights" aria-label="JobTracker highlights">
+    @for (feature of highlights; track feature.title) {
+      <article>
+        <span class="feature-marker" aria-hidden="true">{{ feature.marker }}</span>
+        <div>
+          <h2>{{ feature.title }}</h2>
+          <p>{{ feature.description }}</p>
+        </div>
+      </article>
+    }
+  </div>
+</section>

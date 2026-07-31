@@ -1,0 +1,13 @@
+<div class="backdrop">
+  <section
+    #dialog
+    [attr.role]="role()"
+    aria-modal="true"
+    [attr.aria-labelledby]="labelledBy()"
+    [class.compact]="maxWidth() === 'compact'"
+    tabindex="-1"
+    (keydown.escape)="dismissed.emit()"
+  >
+    <ng-content />
+  </section>
+</div>

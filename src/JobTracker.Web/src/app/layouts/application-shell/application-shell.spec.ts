@@ -20,6 +20,12 @@ describe('ApplicationShell', () => {
     expect(element.querySelector('nav[aria-label="Primary navigation"]')).not.toBeNull();
     expect(element.querySelector('main#main-content')).not.toBeNull();
     expect(element.querySelector('aside[aria-label="Workspace widgets"]')).toBeNull();
+    expect(element.querySelector('aside[aria-label="Demo mode"]')?.textContent).toContain(
+      'local mock data',
+    );
+    expect(
+      element.querySelector('aside[aria-label="Demo mode"] a[href="/"]')?.textContent,
+    ).toContain('Exit demo');
     expect(element.querySelector('footer')).not.toBeNull();
   });
 
@@ -51,5 +57,23 @@ describe('ApplicationShell', () => {
 
     const skipLink = fixture.nativeElement.querySelector('.skip-link') as HTMLAnchorElement;
     expect(skipLink.getAttribute('href')).toBe('#main-content');
+  });
+
+  it('confirms before resetting demo data', () => {
+    const fixture = TestBed.createComponent(ApplicationShell);
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    element.querySelector<HTMLButtonElement>('app-demo-notice button')?.click();
+    fixture.detectChanges();
+
+    expect(element.querySelector('[role="alertdialog"]')?.textContent).toContain(
+      'Reset demo data?',
+    );
+
+    element.querySelector<HTMLButtonElement>('.reset-actions button')?.click();
+    fixture.detectChanges();
+
+    expect(element.querySelector('[role="alertdialog"]')).toBeNull();
   });
 });

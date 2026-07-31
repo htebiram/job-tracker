@@ -1,0 +1,47 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin: var(--space-6) 0;
+}
+label {
+  display: grid;
+  gap: 0.4rem;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+}
+select,
+button {
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+.tabs {
+  display: flex;
+  margin-inline-end: auto;
+  gap: 0.4rem;
+}
+.tabs button.active {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-strong);
+  font-weight: 750;
+}
+.tabs span {
+  margin-left: 0.3rem;
+}
+@media (max-width: 44rem) {
+  .toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .tabs {
+    margin: 0;
+  }
+  label,
+  select {
+    inline-size: 100%;
+  }
+}

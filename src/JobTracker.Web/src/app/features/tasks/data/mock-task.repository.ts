@@ -46,7 +46,7 @@ const TASKS: readonly Task[] = [
   },
 ];
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class MockTaskRepository implements TaskRepository {
   private readonly tasks = new BehaviorSubject<readonly Task[]>(TASKS);
   getAll(): Observable<readonly Task[]> {

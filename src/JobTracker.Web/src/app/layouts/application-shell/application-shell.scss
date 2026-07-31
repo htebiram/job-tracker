@@ -37,6 +37,30 @@ app-footer {
 .navigation-backdrop {
   display: none;
 }
+.reset-dialog h2 {
+  margin-block-start: 0;
+}
+.reset-dialog p {
+  color: var(--color-text-muted);
+}
+.reset-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-block-start: var(--space-5);
+  gap: var(--space-3);
+}
+.reset-actions button {
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+.reset-actions .danger {
+  border-color: var(--color-danger);
+  background: var(--color-danger);
+  color: white;
+}
 
 @media (max-width: 52rem) {
   .shell {

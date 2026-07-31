@@ -1,0 +1,53 @@
+<div class="card">
+  @if (applications().length) {
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Applied</th>
+            <th><span class="sr-only">Actions</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of applications(); track item.id) {
+            <tr>
+              <td>
+                <button class="company" type="button" (click)="selected.emit(item)">
+                  {{ item.company }}</button
+                ><span>{{ item.location }}</span>
+              </td>
+              <td>{{ item.role }}</td>
+              <td>
+                <app-badge [tone]="statusTone(item.status)">{{ item.status }}</app-badge>
+              </td>
+              <td>{{ item.appliedDate }}</td>
+              <td class="actions">
+                <button type="button" (click)="edited.emit(item)">Edit</button
+                ><button class="danger" type="button" (click)="deleted.emit(item)">Delete</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <footer>
+      <span>{{ total() }} applications</span>
+      <div>
+        <button type="button" [disabled]="page() === 1" (click)="pageChanged.emit(-1)">
+          Previous</button
+        ><span>Page {{ page() }} of {{ pageCount() }}</span
+        ><button type="button" [disabled]="page() === pageCount()" (click)="pageChanged.emit(1)">
+          Next
+        </button>
+      </div>
+    </footer>
+  } @else {
+    <app-empty-state
+      title="No applications found"
+      description="Adjust your filters or add a new application."
+    />
+  }
+</div>

@@ -78,10 +78,16 @@ nav {
 
 .login-link {
   padding: var(--space-2) var(--space-3);
+  border: 0;
+  background: transparent;
   color: var(--color-text);
   font-size: var(--font-size-sm);
   font-weight: 700;
   text-decoration: none;
+}
+.login-link:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
 }
 
 .primary-action {

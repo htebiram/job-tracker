@@ -1,0 +1,45 @@
+<app-dialog-shell labelledBy="task-form-title" (dismissed)="cancelled.emit()">
+  <div class="heading">
+    <h2 id="task-form-title">{{ task() ? 'Edit task' : 'Add task' }}</h2>
+    <button type="button" aria-label="Close task form" (click)="cancelled.emit()">×</button>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <label>
+      Title
+      <input formControlName="title" />
+      @if (form.controls.title.touched && form.controls.title.invalid) {
+        <span class="error">Title is required.</span>
+      }
+    </label>
+    <label>Description<textarea rows="3" formControlName="description"></textarea></label>
+    <div class="form-row">
+      <label>
+        Priority
+        <select formControlName="priority">
+          @for (item of priorities(); track item) {
+            <option>{{ item }}</option>
+          }
+        </select>
+      </label>
+      <label>
+        Category
+        <select formControlName="category">
+          @for (item of categories(); track item) {
+            <option>{{ item }}</option>
+          }
+        </select>
+      </label>
+    </div>
+    <label>
+      Due date
+      <input type="date" formControlName="dueDate" />
+      @if (form.controls.dueDate.touched && form.controls.dueDate.invalid) {
+        <span class="error">Due date is required.</span>
+      }
+    </label>
+    <div class="actions">
+      <button type="button" (click)="cancelled.emit()">Cancel</button>
+      <button class="primary" type="submit">{{ task() ? 'Save changes' : 'Add task' }}</button>
+    </div>
+  </form>
+</app-dialog-shell>

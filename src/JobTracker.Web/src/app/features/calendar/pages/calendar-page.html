@@ -1,109 +1,36 @@
 <section class="calendar-page" aria-labelledby="calendar-title">
-  <header>
-    <div>
-      <p class="eyebrow">Schedule</p>
-      <h1 id="calendar-title">Calendar</h1>
-      <p>Interviews, deadlines, and follow-ups in one view.</p>
-    </div>
-    <div class="views" aria-label="Calendar view">
+  <app-page-header
+    eyebrow="Schedule"
+    title="Calendar"
+    description="Interviews, deadlines, and follow-ups in one view."
+    headingId="calendar-title"
+  >
+    <div pageHeaderActions class="views" aria-label="Calendar view">
       <button type="button" [class.active]="view() === 'Month'" (click)="view.set('Month')">
-        Month</button
-      ><button type="button" [class.active]="view() === 'Agenda'" (click)="view.set('Agenda')">
+        Month
+      </button>
+      <button type="button" [class.active]="view() === 'Agenda'" (click)="view.set('Agenda')">
         Agenda
       </button>
     </div>
-  </header>
+  </app-page-header>
+
   <div class="layout">
-    <main class="panel">
-      @if (view() === 'Month') {
-        <div class="month-heading">
-          <button type="button" aria-label="Previous month" (click)="changeMonth(-1)">‹</button>
-          <h2>{{ monthLabel() }}</h2>
-          <button type="button" aria-label="Next month" (click)="changeMonth(1)">›</button>
-        </div>
-        <div class="weekdays" aria-hidden="true">
-          @for (day of weekdays; track day) {
-            <span>{{ day }}</span>
-          }
-        </div>
-        <div class="month-grid" role="grid" [attr.aria-label]="monthLabel()">
-          @for (day of days(); track day.date) {
-            <button
-              type="button"
-              role="gridcell"
-              [class.muted]="!day.currentMonth"
-              [class.selected]="selectedDate() === day.date"
-              [attr.aria-label]="day.date"
-              (click)="selectedDate.set(day.date)"
-            >
-              <strong>{{ day.day }}</strong>
-              @for (event of eventsFor(day.date).slice(0, 2); track event.id) {
-                <span class="event {{ eventClass(event) }}">{{ event.title }}</span>
-              }
-            </button>
-          }
-        </div>
-      } @else {
-        <div class="agenda">
-          <h2>Upcoming agenda</h2>
-          @for (event of agenda(); track event.id) {
-            <article>
-              <time [attr.datetime]="event.date">{{ event.date }}</time
-              ><span class="dot {{ eventClass(event) }}"></span>
-              <div>
-                <strong>{{ event.title }}</strong>
-                <p>{{ event.company }} · {{ event.time }}</p>
-                <small>{{ event.description }}</small>
-              </div>
-            </article>
-          }
-        </div>
-      }
-    </main>
-    <aside>
-      <section class="panel">
-        <p class="eyebrow">Selected day</p>
-        <h2>{{ selectedDate() }}</h2>
-        @if (selectedEvents().length) {
-          @for (event of selectedEvents(); track event.id) {
-            <article class="selected-event">
-              <span class="dot {{ eventClass(event) }}"></span>
-              <div>
-                <strong>{{ event.title }}</strong>
-                <p>{{ event.company }} · {{ event.time }}</p>
-              </div>
-            </article>
-          }
-        } @else {
-          <p class="empty">Nothing scheduled.</p>
-        }
-      </section>
-      <section class="panel">
-        <p class="eyebrow">Next up</p>
-        <h2>Upcoming interviews</h2>
-        @for (event of interviews(); track event.id) {
-          <article class="compact">
-            <time>{{ event.date }}</time>
-            <div>
-              <strong>{{ event.company }}</strong>
-              <p>{{ event.title }}</p>
-            </div>
-          </article>
-        }
-      </section>
-      <section class="panel">
-        <p class="eyebrow">Remember</p>
-        <h2>Reminders & deadlines</h2>
-        @for (event of reminders(); track event.id) {
-          <article class="compact">
-            <span class="dot {{ eventClass(event) }}"></span>
-            <div>
-              <strong>{{ event.title }}</strong>
-              <p>{{ event.date }} · {{ event.company }}</p>
-            </div>
-          </article>
-        }
-      </section>
-    </aside>
+    <app-calendar-view
+      [view]="view()"
+      [monthLabel]="monthLabel()"
+      [weekdays]="weekdays"
+      [days]="days()"
+      [selectedDate]="selectedDate()"
+      [agenda]="agenda()"
+      (monthChanged)="changeMonth($event)"
+      (dateSelected)="selectedDate.set($event)"
+    />
+    <app-schedule-sidebar
+      [selectedDate]="selectedDate()"
+      [selectedEvents]="selectedEvents()"
+      [interviews]="interviews()"
+      [reminders]="reminders()"
+    />
   </div>
 </section>

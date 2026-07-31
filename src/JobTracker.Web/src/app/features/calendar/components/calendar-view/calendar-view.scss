@@ -1,0 +1,133 @@
+.panel {
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+.month-heading,
+.agenda article {
+  display: flex;
+  align-items: center;
+}
+.month-heading {
+  justify-content: space-between;
+}
+h2 {
+  margin: 0;
+}
+button {
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+.weekdays,
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.weekdays {
+  margin-top: var(--space-5);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  text-align: center;
+}
+.month-grid {
+  margin-top: 0.5rem;
+  border-block-start: 1px solid var(--color-border);
+  border-inline-start: 1px solid var(--color-border);
+}
+.month-grid button {
+  min-block-size: 6.4rem;
+  padding: 0.5rem;
+  border: 0;
+  border-radius: 0;
+  border-block-end: 1px solid var(--color-border);
+  border-inline-end: 1px solid var(--color-border);
+  text-align: start;
+  overflow: hidden;
+}
+.month-grid button.selected {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+  background: var(--color-primary-soft);
+}
+.muted {
+  opacity: 0.38;
+}
+.event {
+  display: block;
+  margin-top: 0.35rem;
+  padding: 0.2rem 0.35rem;
+  border-radius: 0.3rem;
+  background: var(--color-info-soft);
+  color: var(--color-info);
+  font-size: 0.65rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.event.deadline {
+  background: var(--color-danger);
+  color: white;
+}
+.event.reminder {
+  background: var(--color-success-soft);
+  color: var(--color-success);
+}
+.event.application {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-strong);
+}
+.agenda h2 {
+  margin-bottom: var(--space-5);
+}
+.agenda article {
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding-block: var(--space-3);
+  border-block-start: 1px solid var(--color-border);
+}
+.agenda time {
+  min-inline-size: 6rem;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+}
+.dot {
+  flex: 0 0 auto;
+  inline-size: 0.65rem;
+  block-size: 0.65rem;
+  margin-top: 0.3rem;
+  border-radius: 50%;
+  background: var(--color-info);
+}
+article strong {
+  font-size: var(--font-size-sm);
+}
+article p,
+article small {
+  margin: 0.25rem 0 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+}
+@media (max-width: 44rem) {
+  .panel {
+    padding: var(--space-3);
+  }
+  .month-grid button {
+    min-block-size: 4.2rem;
+    padding: 0.3rem;
+  }
+  .event {
+    inline-size: 0.45rem;
+    block-size: 0.45rem;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 0;
+  }
+  .weekdays {
+    font-size: 0.65rem;
+  }
+}

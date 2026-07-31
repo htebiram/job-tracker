@@ -22,8 +22,27 @@
   }
 
   <main id="main-content" class="main-content" tabindex="-1">
+    <app-demo-notice (resetRequested)="isResetConfirmationOpen.set(true)" />
     <router-outlet />
   </main>
 
   <app-footer />
 </div>
+
+@if (isResetConfirmationOpen()) {
+  <app-dialog-shell
+    role="alertdialog"
+    labelledBy="reset-demo-title"
+    maxWidth="compact"
+    (dismissed)="isResetConfirmationOpen.set(false)"
+  >
+    <div class="reset-dialog">
+      <h2 id="reset-demo-title">Reset demo data?</h2>
+      <p>This reloads the demo and restores all applications, tasks, and settings.</p>
+      <div class="reset-actions">
+        <button type="button" (click)="isResetConfirmationOpen.set(false)">Cancel</button>
+        <button class="danger" type="button" (click)="resetDemo()">Reset demo</button>
+      </div>
+    </div>
+  </app-dialog-shell>
+}

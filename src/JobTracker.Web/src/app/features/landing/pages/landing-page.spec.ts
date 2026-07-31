@@ -16,6 +16,8 @@ describe('LandingPage', () => {
     const element = fixture.nativeElement as HTMLElement;
     expect(element.querySelector('h1')?.textContent).toContain('Move every opportunity forward');
     expect(element.querySelectorAll('.hero-actions a').length).toBe(2);
+    expect(element.querySelectorAll('.hero-actions a[href="/workspace"]')).toHaveLength(2);
+    expect(element.querySelector('.hero-actions')?.textContent).not.toContain('Log in');
     expect(element.querySelector('.product-preview')).not.toBeNull();
     expect(element.querySelectorAll('.feature-highlights article').length).toBe(3);
     expect(element.querySelector('nav[aria-label="Primary navigation"]')).toBeNull();

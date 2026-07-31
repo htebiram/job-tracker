@@ -1,0 +1,38 @@
+@if (tasks().length) {
+  <div class="task-list">
+    @for (task of tasks(); track task.id) {
+      <article [class.completed]="task.completed">
+        <button
+          class="check"
+          type="button"
+          [attr.aria-label]="task.completed ? 'Mark task active' : 'Complete task'"
+          [attr.aria-pressed]="task.completed"
+          (click)="toggled.emit(task)"
+        >
+          {{ task.completed ? '✓' : '' }}
+        </button>
+        <div class="task-content">
+          <div class="task-heading">
+            <h2>{{ task.title }}</h2>
+            <app-badge [tone]="priorityTone(task.priority)">{{ task.priority }}</app-badge>
+          </div>
+          <p>{{ task.description }}</p>
+          <div class="meta">
+            <span>{{ task.category }}</span
+            ><span>Due {{ task.dueDate }}</span>
+          </div>
+        </div>
+        <div class="actions">
+          <button type="button" (click)="edited.emit(task)">Edit</button>
+          <button type="button" (click)="archived.emit(task)">Archive</button>
+        </div>
+      </article>
+    }
+  </div>
+} @else {
+  <app-empty-state
+    title="No tasks here"
+    description="Your current filters have no matching tasks."
+    marker="✓"
+  />
+}

@@ -1,133 +1,26 @@
 <section class="dashboard" aria-labelledby="dashboard-title">
-  <header class="dashboard-heading">
-    <div>
-      <p class="eyebrow">Overview</p>
-      <h1 id="dashboard-title">Good morning, {{ dashboard().userName }}.</h1>
-      <p>Here is what is happening across your job search.</p>
-    </div>
-    <button type="button" disabled>Add application</button>
-  </header>
+  <app-page-header
+    eyebrow="Overview"
+    [title]="'Good morning, ' + dashboard().userName + '.'"
+    description="Here is what is happening across your job search."
+    headingId="dashboard-title"
+  >
+    <a
+      pageHeaderActions
+      class="primary-action"
+      routerLink="/workspace/applications"
+      [queryParams]="{ action: 'create' }"
+    >
+      Add application
+    </a>
+  </app-page-header>
 
-  <div class="summary-grid" aria-label="Application summary">
-    @for (metric of dashboard().metrics; track metric.label) {
-      <article class="summary-card">
-        <div class="metric-heading">
-          <p>{{ metric.label }}</p>
-          <span class="metric-icon {{ metric.tone }}" aria-hidden="true">{{ metric.marker }}</span>
-        </div>
-        <strong>{{ metric.value }}</strong>
-        <span class="metric-change">{{ metric.change }}</span>
-      </article>
-    }
-  </div>
+  <app-summary-statistics [metrics]="dashboard().metrics" />
 
-  <div class="dashboard-grid">
-    <section class="panel status-panel" aria-labelledby="status-title">
-      <div class="panel-heading">
-        <div>
-          <p class="eyebrow">Pipeline</p>
-          <h2 id="status-title">Application status</h2>
-        </div>
-        <span>{{ dashboard().metrics[0].value }} total</span>
-      </div>
-      <div
-        class="status-chart"
-        role="img"
-        aria-label="Bar chart showing application totals by status"
-      >
-        @for (status of dashboard().statuses; track status.label) {
-          <div class="status-row">
-            <div class="status-label">
-              <span>{{ status.label }}</span>
-              <strong>{{ status.count }}</strong>
-            </div>
-            <div class="bar-track">
-              <span class="bar {{ status.tone }}" [style.inline-size.%]="status.percentage"></span>
-            </div>
-          </div>
-        }
-      </div>
-    </section>
-
-    <section class="panel interviews-panel" aria-labelledby="interviews-title">
-      <div class="panel-heading">
-        <div>
-          <p class="eyebrow">Next up</p>
-          <h2 id="interviews-title">Upcoming interviews</h2>
-        </div>
-      </div>
-      <ul class="interview-list">
-        @for (interview of dashboard().upcomingInterviews; track interview.id) {
-          <li>
-            <span class="date-tile">
-              <strong>{{ interview.dateLabel }}</strong>
-              <span>{{ interview.timeLabel }}</span>
-            </span>
-            <span class="interview-details">
-              <strong>{{ interview.company }}</strong>
-              <span>{{ interview.role }}</span>
-            </span>
-            <span class="format">{{ interview.format }}</span>
-          </li>
-        }
-      </ul>
-    </section>
-
-    <section class="panel applications-panel" aria-labelledby="applications-title">
-      <div class="panel-heading">
-        <div>
-          <p class="eyebrow">Latest additions</p>
-          <h2 id="applications-title">Recent applications</h2>
-        </div>
-      </div>
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Company</th>
-              <th scope="col">Role</th>
-              <th scope="col">Status</th>
-              <th scope="col">Applied</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (application of dashboard().recentApplications; track application.id) {
-              <tr>
-                <td>
-                  <strong>{{ application.company }}</strong>
-                </td>
-                <td>{{ application.role }}</td>
-                <td>
-                  <span class="status-badge {{ application.tone }}">
-                    {{ application.status }}
-                  </span>
-                </td>
-                <td>{{ application.appliedLabel }}</td>
-              </tr>
-            }
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="panel activity-panel" aria-labelledby="activity-title">
-      <div class="panel-heading">
-        <div>
-          <p class="eyebrow">Updates</p>
-          <h2 id="activity-title">Recent activity</h2>
-        </div>
-      </div>
-      <ol class="activity-list">
-        @for (activity of dashboard().recentActivity; track activity.id) {
-          <li>
-            <span class="activity-marker" aria-hidden="true">{{ activity.marker }}</span>
-            <span>
-              <strong>{{ activity.description }}</strong>
-              <span>{{ activity.timeLabel }}</span>
-            </span>
-          </li>
-        }
-      </ol>
-    </section>
+  <div class="grid">
+    <app-status-chart [statuses]="dashboard().statuses" [total]="dashboard().metrics[0].value" />
+    <app-upcoming-interviews [interviews]="dashboard().upcomingInterviews" />
+    <app-recent-applications [applications]="dashboard().recentApplications" />
+    <app-activity-feed [activities]="dashboard().recentActivity" />
   </div>
 </section>

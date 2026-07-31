@@ -8,23 +8,15 @@
     <ul>
       @for (item of primaryNavigation; track item.label) {
         <li>
-          @if (item.route) {
-            <a
-              [routerLink]="item.route"
-              routerLinkActive="is-active"
-              [routerLinkActiveOptions]="{ exact: true }"
-              (click)="navigationSelected.emit()"
-            >
-              <span class="item-mark" aria-hidden="true">{{ item.shortLabel }}</span>
-              <span>{{ item.label }}</span>
-            </a>
-          } @else {
-            <span class="unavailable" aria-disabled="true">
-              <span class="item-mark" aria-hidden="true">{{ item.shortLabel }}</span>
-              <span>{{ item.label }}</span>
-              <span class="soon">Soon</span>
-            </span>
-          }
+          <a
+            [routerLink]="item.route"
+            routerLinkActive="is-active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            (click)="navigationSelected.emit()"
+          >
+            <span class="item-mark" aria-hidden="true">{{ item.shortLabel }}</span>
+            <span>{{ item.label }}</span>
+          </a>
         </li>
       }
     </ul>

@@ -1,0 +1,43 @@
+<app-dialog-shell labelledBy="form-title" (dismissed)="cancelled.emit()">
+  <div class="dialog-content">
+    <div class="heading">
+      <h2 id="form-title">{{ application() ? 'Edit application' : 'Add application' }}</h2>
+      <button type="button" aria-label="Close form" (click)="cancelled.emit()">×</button>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <label
+        >Company<input formControlName="company" />
+        @if (form.controls.company.touched && form.controls.company.invalid) {
+          <span>Company is required.</span>
+        }
+      </label>
+      <label
+        >Role<input formControlName="role" />
+        @if (form.controls.role.touched && form.controls.role.invalid) {
+          <span>Role is required.</span>
+        }
+      </label>
+      <div class="row">
+        <label>Location<input formControlName="location" /></label
+        ><label
+          >Status<select formControlName="status">
+            @for (item of statuses; track item) {
+              <option>{{ item }}</option>
+            }
+          </select></label
+        >
+      </div>
+      <div class="row">
+        <label>Applied date<input type="date" formControlName="appliedDate" /></label
+        ><label>Source<input formControlName="source" /></label>
+      </div>
+      <label>Notes<textarea rows="3" formControlName="notes"></textarea></label>
+      <div class="actions">
+        <button type="button" (click)="cancelled.emit()">Cancel</button
+        ><button class="primary" type="submit">
+          {{ application() ? 'Save changes' : 'Add application' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</app-dialog-shell>

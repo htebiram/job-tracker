@@ -1,0 +1,51 @@
+<button
+  class="backdrop"
+  type="button"
+  aria-label="Close application details"
+  (click)="closed.emit()"
+></button>
+<aside aria-labelledby="details-title">
+  <div class="heading">
+    <div>
+      <p>Application details</p>
+      <h2 id="details-title">{{ application().company }}</h2>
+    </div>
+    <button type="button" aria-label="Close details" (click)="closed.emit()">×</button>
+  </div>
+  <dl>
+    <div>
+      <dt>Role</dt>
+      <dd>{{ application().role }}</dd>
+    </div>
+    <div>
+      <dt>Status</dt>
+      <dd>{{ application().status }}</dd>
+    </div>
+    <div>
+      <dt>Location</dt>
+      <dd>{{ application().location }}</dd>
+    </div>
+    <div>
+      <dt>Source</dt>
+      <dd>{{ application().source }}</dd>
+    </div>
+  </dl>
+  <section>
+    <h3>Notes</h3>
+    <p>{{ application().notes || 'No notes added.' }}</p>
+  </section>
+  <section>
+    <h3>Timeline</h3>
+    <ol>
+      @for (event of application().timeline; track event.label) {
+        <li>
+          <span></span>
+          <div>
+            <strong>{{ event.label }}</strong>
+            <p>{{ event.date }}</p>
+          </div>
+        </li>
+      }
+    </ol>
+  </section>
+</aside>

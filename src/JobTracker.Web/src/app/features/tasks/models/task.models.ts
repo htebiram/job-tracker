@@ -1,5 +1,6 @@
 export type TaskPriority = 'High' | 'Medium' | 'Low';
 export type TaskCategory = 'Application' | 'Interview' | 'Follow-up' | 'Personal';
+export type TaskView = 'Active' | 'Completed';
 
 export interface Task {
   readonly id: string;

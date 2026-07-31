@@ -1,0 +1,45 @@
+<aside>
+  <section class="panel">
+    <p class="eyebrow">Selected day</p>
+    <h2>{{ selectedDate() }}</h2>
+    @if (selectedEvents().length) {
+      @for (event of selectedEvents(); track event.id) {
+        <article class="selected-event">
+          <span class="dot {{ eventClass(event) }}"></span>
+          <div>
+            <strong>{{ event.title }}</strong>
+            <p>{{ event.company }} · {{ event.time }}</p>
+          </div>
+        </article>
+      }
+    } @else {
+      <p class="empty">Nothing scheduled.</p>
+    }
+  </section>
+  <section class="panel">
+    <p class="eyebrow">Next up</p>
+    <h2>Upcoming interviews</h2>
+    @for (event of interviews(); track event.id) {
+      <article class="compact">
+        <time>{{ event.date }}</time>
+        <div>
+          <strong>{{ event.company }}</strong>
+          <p>{{ event.title }}</p>
+        </div>
+      </article>
+    }
+  </section>
+  <section class="panel">
+    <p class="eyebrow">Remember</p>
+    <h2>Reminders & deadlines</h2>
+    @for (event of reminders(); track event.id) {
+      <article class="compact">
+        <span class="dot {{ eventClass(event) }}"></span>
+        <div>
+          <strong>{{ event.title }}</strong>
+          <p>{{ event.date }} · {{ event.company }}</p>
+        </div>
+      </article>
+    }
+  </section>
+</aside>

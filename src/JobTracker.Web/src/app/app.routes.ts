@@ -38,6 +38,11 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./features/calendar/calendar.routes').then((routes) => routes.CALENDAR_ROUTES),
       },
+      {
+        path: 'settings',
+        loadChildren: () =>
+          import('./features/settings/settings.routes').then((routes) => routes.SETTINGS_ROUTES),
+      },
     ],
   },
   {

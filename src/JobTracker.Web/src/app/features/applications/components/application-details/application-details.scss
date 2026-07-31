@@ -1,0 +1,77 @@
+.backdrop {
+  position: fixed;
+  z-index: var(--z-backdrop);
+  inset: 0;
+  border: 0;
+  background: rgb(15 23 42/50%);
+}
+aside {
+  position: fixed;
+  z-index: var(--z-drawer);
+  inset: var(--shell-header-height) 0 0 auto;
+  inline-size: min(28rem, 100%);
+  padding: var(--space-6);
+  background: var(--color-surface);
+  overflow: auto;
+  box-shadow: var(--shadow-lg);
+}
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.heading p {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: var(--font-size-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.heading h2 {
+  margin: 0.4rem 0;
+}
+.heading button {
+  border: 0;
+  background: transparent;
+  font-size: 1.5rem;
+}
+dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  margin: var(--space-8) 0;
+}
+dl div {
+  border-block-start: 1px solid var(--color-border);
+  padding-block-start: var(--space-3);
+}
+dt {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+}
+dd {
+  margin: 0.4rem 0 0;
+  font-weight: 650;
+}
+section {
+  margin-block-start: var(--space-8);
+}
+ol {
+  padding: 0;
+  list-style: none;
+}
+li {
+  display: flex;
+  gap: var(--space-3);
+}
+li > span {
+  inline-size: 0.65rem;
+  block-size: 0.65rem;
+  margin-top: 0.35rem;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+li p {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+}

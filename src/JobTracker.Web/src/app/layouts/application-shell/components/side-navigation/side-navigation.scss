@@ -32,8 +32,7 @@ ul {
   list-style: none;
 }
 
-a,
-.unavailable {
+a {
   display: flex;
   align-items: center;
   min-block-size: 2.75rem;
@@ -71,18 +70,6 @@ a.is-active {
 .is-active .item-mark {
   background: var(--color-primary);
   color: var(--color-on-primary);
-}
-
-.unavailable {
-  color: var(--color-text-muted);
-}
-
-.soon {
-  margin-inline-start: auto;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
 }
 
 .public-link {

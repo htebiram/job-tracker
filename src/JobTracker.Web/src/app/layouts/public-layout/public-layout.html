@@ -16,8 +16,15 @@
       >
         <span aria-hidden="true">{{ theme() === 'light' ? '◐' : '☀' }}</span>
       </button>
-      <a class="login-link" routerLink="/workspace">Log in</a>
-      <a class="primary-action compact" routerLink="/workspace">Get started</a>
+      <button
+        class="login-link"
+        type="button"
+        disabled
+        title="Authentication is not available in this demo"
+      >
+        Log in
+      </button>
+      <a class="primary-action compact" routerLink="/workspace">Open demo</a>
     </nav>
   </header>
 
@@ -27,7 +34,7 @@
 
   <footer>
     <a routerLink="/">JobTracker</a>
-    <p>One clear workspace for every opportunity.</p>
+    <p>Explore the workflow with local demo data.</p>
     <p>© {{ currentYear }} JobTracker</p>
   </footer>
 </div>

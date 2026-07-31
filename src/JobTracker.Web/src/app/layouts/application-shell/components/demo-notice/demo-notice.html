@@ -1,0 +1,13 @@
+<aside class="demo-notice" aria-label="Demo mode">
+  <div>
+    <span class="marker" aria-hidden="true">D</span>
+    <p>
+      <strong>Demo mode</strong>
+      <span>This workspace uses local mock data and is not connected to a real account.</span>
+    </p>
+  </div>
+  <div class="actions">
+    <button type="button" (click)="resetRequested.emit()">Reset demo</button>
+    <a routerLink="/">Exit demo</a>
+  </div>
+</aside>

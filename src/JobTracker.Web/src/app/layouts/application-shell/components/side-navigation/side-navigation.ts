@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
-import { PRIMARY_NAVIGATION } from '../../../../core/constants/navigation.constants';
+import { PRIMARY_NAVIGATION } from '@core/config/navigation.config';
 
 @Component({
   selector: 'app-side-navigation',

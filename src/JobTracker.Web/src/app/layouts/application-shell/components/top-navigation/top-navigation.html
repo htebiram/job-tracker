@@ -18,7 +18,7 @@
   </a>
 
   <div class="actions">
-    <span class="environment-label">Personal workspace</span>
+    <span class="environment-label">Demo workspace</span>
     <button
       class="theme-button"
       type="button"
@@ -27,7 +27,13 @@
     >
       <span aria-hidden="true">{{ theme() === 'light' ? '◐' : '☀' }}</span>
     </button>
-    <button class="profile-button" type="button" aria-label="Open profile menu" disabled>
+    <button
+      class="profile-button"
+      type="button"
+      aria-label="Profile unavailable in demo mode"
+      title="Profile access requires authentication"
+      disabled
+    >
       <span aria-hidden="true">JD</span>
     </button>
   </div>

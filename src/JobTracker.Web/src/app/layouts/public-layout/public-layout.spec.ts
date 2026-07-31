@@ -15,7 +15,8 @@ describe('PublicLayout', () => {
 
     const element = fixture.nativeElement as HTMLElement;
     expect(element.querySelector('nav[aria-label="Public navigation"]')).not.toBeNull();
-    expect(element.querySelectorAll('a[href="/workspace"]').length).toBe(2);
+    expect(element.querySelectorAll('a[href="/workspace"]')).toHaveLength(1);
+    expect(element.querySelector('.login-link[disabled]')?.textContent).toContain('Log in');
     expect(element.querySelector('nav[aria-label="Primary navigation"]')).toBeNull();
     expect(element.querySelector('aside')).toBeNull();
   });

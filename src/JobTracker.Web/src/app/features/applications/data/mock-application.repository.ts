@@ -22,7 +22,7 @@ const APPLICATIONS: readonly JobApplication[] = [
   timeline: [{ label: 'Application submitted', date: appliedDate }],
 }));
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class MockApplicationRepository implements ApplicationRepository {
   private readonly applications = new BehaviorSubject<readonly JobApplication[]>(APPLICATIONS);
 

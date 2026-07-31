@@ -1,0 +1,46 @@
+<main class="panel">
+  @if (view() === 'Month') {
+    <div class="month-heading">
+      <button type="button" aria-label="Previous month" (click)="monthChanged.emit(-1)">‹</button>
+      <h2>{{ monthLabel() }}</h2>
+      <button type="button" aria-label="Next month" (click)="monthChanged.emit(1)">›</button>
+    </div>
+    <div class="weekdays" aria-hidden="true">
+      @for (day of weekdays(); track day) {
+        <span>{{ day }}</span>
+      }
+    </div>
+    <div class="month-grid" role="grid" [attr.aria-label]="monthLabel()">
+      @for (day of days(); track day.date) {
+        <button
+          type="button"
+          role="gridcell"
+          [class.muted]="!day.currentMonth"
+          [class.selected]="selectedDate() === day.date"
+          [attr.aria-label]="day.date"
+          (click)="dateSelected.emit(day.date)"
+        >
+          <strong>{{ day.day }}</strong>
+          @for (event of day.events.slice(0, 2); track event.id) {
+            <span class="event {{ eventClass(event) }}">{{ event.title }}</span>
+          }
+        </button>
+      }
+    </div>
+  } @else {
+    <div class="agenda">
+      <h2>Upcoming agenda</h2>
+      @for (event of agenda(); track event.id) {
+        <article>
+          <time [attr.datetime]="event.date">{{ event.date }}</time>
+          <span class="dot {{ eventClass(event) }}"></span>
+          <div>
+            <strong>{{ event.title }}</strong>
+            <p>{{ event.company }} · {{ event.time }}</p>
+            <small>{{ event.description }}</small>
+          </div>
+        </article>
+      }
+    </div>
+  }
+</main>
